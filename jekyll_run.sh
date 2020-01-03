@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #--destination _deploy
 
-#scp -Cr _site root@115.28.94.157:/home/tech.mojotv.cn
+#scp -Cr _site root@115.28.94.157:/home/360cs.github.com
 if [ $1 = 'build' ] ;then
     echo jekyll building;
     bundle exec jekyll build;

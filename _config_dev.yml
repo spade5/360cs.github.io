@@ -17,7 +17,7 @@ author:
 # 站点信息
 title: MojoTech
 description: Go语言编程教程Python,Docker,Raft,Kubernetes,k8s,Logrus,Viper,Cobra
-url: https://tech.mojotv.cn
+url: https://360cs.github.com
 rss_url: /pages/atom.xml
 comment_api: https://felix.mojotv.cn
 
