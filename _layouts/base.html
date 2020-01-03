@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<head>
+    {% include header.html %}
+</head>
+<body>
+{% include baidu_console.html %}
+
+
+<div id="app" class="flex-row">
+
+    <!--侧边导航栏-->
+    <nav class="nav-side">
+
+        <a href="/" :style="`background-image:url(${userAvatar})`" class="big-avatar"></a>
+
+        <ul id="tags__ul" @mouseover="doSetPostList(true)" @mouseleave="doSetPostList(false)">
+            <li class="tags__li tags-btn" :class="clickedCate === '' ? 'active' : ''" @click="doChangeCate('')">All
+            </li>
+            <li class="tags__li tags-btn" :class="clickedCate === name ? 'active' : ''" v-for="(name,idx) in categories"
+                :key="idx" v-text="name" @click="doChangeCate(name)"></li>
+        </ul>
+
+        <div class="misc-icon">
+            <a href="/misc/games" class="fa fa-gamepad" title="NES红白机游戏"></a>
+            <a href="/login" class="fa fa-registered" v-if="uid <= 0" title="注册新用户"></a>
+            <a href="/login" class="fa fa-sign-in" v-if="uid <= 1" title="账号登陆"></a>
+            <a @click="doLogout" class="fa fa-sign-out" v-if="uid > 0" title="账号登出"></a>
+        </div>
+    </nav> <!-- end #tags -->
+    <!--文章列表-->
+    <div class="posts-list " @mouseover="doSetPostList(true)"
+         v-if="!isMobile"
+         v-show="showPostList"
+         @mouseleave="doSetPostList(false)">
+        <form action="" id="search-form">
+            <input id="search-input" ref="search" type="text" placeholder="Search..." v-model.trim="search"
+                   autocomplete="off">
+        </form>
+        <section class="article-list">
+            <a :href="item.url" v-for="item in articles" :key="item.url" class="post-li-a"
+               @click.stop.prevent="doView(item)">
+                <span class="post-li-dot"></span>
+                <span class="post-li-title" v-text="item.title"></span>
+                <span class="post-li-time" v-text="humanTime(item.time)"></span>
+            </a>
+        </section>
+    </div> <!-- end #posts-list -->
+
+    <div class="main" ref="main">
+
+
+        <article v-if="pjaxHtml === ''" class="article-body">
+            <!--===thisExplodePointPjax===-->
+            {{ content  | replace: '<a href="http', '<a rel="nofollow noopener noreferrer" target="_blank" href="http' }}
+            <!--===thisExplodePointPjax===-->
+        </article>
+        <article v-if="pjaxHtml !== ''" v-html="pjaxHtml" class="article-body" ></article>
+
+
+        {% include addons.html %}
+        {% include base_copyright.html %}
+
+
+    </div>
+
+    </section>
+    <!--markdwon 导航栏-->
+    <div id="article-index" v-if="isPostPage">
+        <div id="post__toc">
+            <span id="article-index-title">目录</span>
+            <ul id="article-index-ul"></ul>
+        </div>
+    </div>
+
+
+</div>
+<script src="/assets/js/vue.js"></script>
+<script src="/assets/js/nprogress.js"></script>
+<script src="/assets/js/axios.min.js"></script>
+<script src="/assets/js/app.js"></script>
+<!-- Go to 评论 -->
+
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="robots" content="noindex">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>任天堂Nes红白机在线游戏</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="/assets/css/nes.css" rel="stylesheet">
+</head>
+<body class="text-center">
+
+
+<!-- 控制模块 -->
+<div class="modal fade" id="console" tabindex="-1" role="dialog" aria-labelledby="game console controller"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" >
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="color:black" >控制手柄键盘帮助</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" >
+                <table class="table table-borderless table-hover">
+                    <thead>
+                    <tr>
+                        <th>按键</th>
+                        <th>玩家一</th>
+                        <th>玩家二</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>←</td>
+                        <td>A</td>
+                        <td>←</td>
+                    </tr>
+                    <tr>
+                        <td>→</td>
+                        <td>D</td>
+                        <td>→</td>
+                    </tr>
+                    <tr>
+                        <td>↑</td>
+                        <td>W</td>
+                        <td>↑</td>
+                    </tr>
+                    <tr>
+                        <td>↓</td>
+                        <td>S</td>
+                        <td>↓</td>
+                    </tr>
+                    <tr>
+                        <td>A</td>
+                        <td>K</td>
+                        <td>小键盘*</td>
+                    </tr>
+                    <tr>
+                        <td>B</td>
+                        <td>J</td>
+                        <td>小键盘-</td>
+                    </tr>
+                    <tr>
+                        <td>开始</td>
+                        <td>H</td>
+                        <td>小键盘1</td>
+                    </tr>
+                    <tr>
+                        <td>切换</td>
+                        <td>F</td>
+                        <td>小键盘2</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <h3 class="masthead-brand">Nes红白机在线游戏</h3>
+            <nav class="nav nav-masthead justify-content-center" style="margin-right: 2rem">
+                <a class="nav-link active" href="/misc/games" target="_blank">更多游戏</a>
+                <a class="nav-link active" data-toggle="modal" data-target="#console">手柄帮助</a>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main" class="inner game">
+        <div style="margin: auto; width: 100%;">
+            <canvas id="nes-canvas" width="256" height="240" style=" height: 81vh;width:144vh "/>
+        </div>
+    </main>
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <p>Game of <a href="https://tech.mojotv.cn/">tech.mojotv.cn</a> powered by <a
+                        href="https://weibo.com/2706451481">@EricZhou</a>.</p>
+        </div>
+    </footer>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script type="text/javascript" src="/assets/js/jsnes.min.js"></script>
+<script type="text/javascript" src="/assets/js/nes.js"></script>
+<script>
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var name = url.searchParams.get("n") || "超级玛丽";
+    $('h3.masthead-brand').text(name);
+    var game = url.searchParams.get("g")||'Super Mario Bros (e)';
+    var gPath = "/data/nes/"+game+".nes"
+    if (game.indexOf("NESroms/") > -1){
+        gPath = "/"+game;
+    }
+    window.onload = function () {
+        nes_load_url("nes-canvas", gPath);
+    }
+</script>
+</body>
+</html>
