@@ -23,5 +23,5 @@ tags: 首页 入口
 
 ## 联系我
 
-- [360cs](https://github.com/360cs)
+- [360cs](https://github.com/360cs/360cs.github.io/issues)
 
