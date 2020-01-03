@@ -28,6 +28,7 @@ layout: base
 
     <div class="post-meta">
         <span><i class="fa fa-star"></i><i>{{ page.score | default: 4.5 }}</i></span>
+        <span><i class="fa fa-pencil"></i><i>{{page.coverage | default: '匿名'}}</i></span>
         <span><i class="fa fa-user"></i><i>{{ page.author | default: site.author.name }}</i></span>
         <span><i class="fa fa-th-list"></i><a
                     href="/404#{{page.tags[0]|default:libra}}"><i>{{page.tags[0]|default:libra}}</i></a></span>
